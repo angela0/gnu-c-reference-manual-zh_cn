@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>6. 程序结构和作用域 - Gnu C Reference Manual</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "6. \u7a0b\u5e8f\u7ed3\u6784\u548c\u4f5c\u7528\u57df";
+    var mkdocs_page_input_path = "Program-Structure-And-Scope.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Gnu C Reference Manual</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Preface/">前言</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Lexical-Elements/">1. 词法元素</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Data-Types/">2. 数据类型</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Expressions-And-Operators/">3. 表达式与操作符</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Statement/">4. 语句</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Function/">5. 函数</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">6. 程序结构和作用域</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#Program-Structure">6.1 程序结构</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Scope">6.2 作用域</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../A-Sample-Program/">7. 示例程序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Appendix-A-Overflow/">附录A：溢出</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../License/">License</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Gnu C Reference Manual</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>6. 程序结构和作用域</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>既然我们已经了解了 C 语言所有的基本元素，是时候宏观地看一下了。</p>
+<h3 id="Program-Structure">6.1 程序结构<a class="headerlink" href="#Program-Structure" title="Permanent link">&para;</a></h3>
+<p>一个 C 程序可以只有一个单独的源文件，但通常会更多。一个比较大的程序会包含一些自定义的头文件和源文件，也会包含和链接已存在的库文件。</p>
+<p>为了方便，头文件（带 “.h” 扩展）包含变量和函数的声明，源文件（带 “.c” 扩展）包含对应的定义。如果一些声明不想被其他文件看到，可以把该声明放到源文件中。然而几乎可以肯定的是，头文件不应该包含任何定义。</p>
+<p>例如，如果你写了一个函数来计算平方根，并且你想让该函数可以被其他文件访问，而不仅仅是定义它的文件，你就可以会把该函数的声明放在头文件中（带 “.h” 扩展）：</p>
+<pre><code>/* sqrt.h */
+
+double
+computeSqrt (double x);
+</code></pre>
+
+<p>这个头文件可以被其他需要该函数的源文件包含，但并不需要知道这个函数如何实现的。</p>
+<p>这个函数的实现在对应的源文件中（带有 “.c” 扩展）：</p>
+<pre><code>/* sqrt.c */
+#include &quot;sqrt.h&quot;
+
+double
+computeSqrt (double x)
+{
+    double result;
+    …
+    return result;
+}
+</code></pre>
+
+<h3 id="Scope">6.2 作用域<a class="headerlink" href="#Scope" title="Permanent link">&para;</a></h3>
+<p>作用域指示了程序的哪一部分可以“看到”一个声明过的对象。一个声明过的对象可以仅在特定函数可见，可以在特定文件可以，也可以通过包含头文件并使用 <code>extern</code> 声明来对所有文件可见。</p>
+<p>除非显式指出，否则在文件顶层的声明（就是不在一个函数里面）对整个文件可见，包括函数里面，但是对文件外不可见。</p>
+<p>在函数里面的声明只对该函数内可见。</p>
+<p>一个声明在该名字声明之前是不可见的，例如：</p>
+<pre><code>int x = 5;
+int y = x + 10;
+</code></pre>
+
+<p>可以工作，但</p>
+<pre><code>int x = y + 10;
+int y = 5;
+</code></pre>
+
+<p>不能工作。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../A-Sample-Program/" class="btn btn-neutral float-right" title="7. 示例程序">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Function/" class="btn btn-neutral" title="5. 函数"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Function/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../A-Sample-Program/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

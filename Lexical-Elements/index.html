@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>1. 词法元素 - Gnu C Reference Manual</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "1. \u8bcd\u6cd5\u5143\u7d20";
+    var mkdocs_page_input_path = "Lexical-Elements.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Gnu C Reference Manual</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Preface/">前言</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">1. 词法元素</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#Identifiers">1.1 标识符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Keywords">1.2 关键字</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Constants">1.3 常量</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#Integer-Constants">1.3.1 整形常量</a></li>
+        
+            <li><a class="toctree-l3" href="#Character-Constants">1.3.2 字符常量</a></li>
+        
+            <li><a class="toctree-l3" href="#Real-Number-Constants">1.3.3 实数常量</a></li>
+        
+            <li><a class="toctree-l3" href="#String-Constants">1.3.4 字符串常量</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#Operators">1.4 操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Separators">1.5 分隔符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#White-Space">1.6 空白符</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Data-Types/">2. 数据类型</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Expressions-And-Operators/">3. 表达式与操作符</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Statement/">4. 语句</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Function/">5. 函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Program-Structure-And-Scope/">6. 程序结构和作用域</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../A-Sample-Program/">7. 示例程序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Appendix-A-Overflow/">附录A：溢出</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../License/">License</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Gnu C Reference Manual</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>1. 词法元素</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>本章描述了在预处理之后组成 C 源代码的词汇元素。这些元素被称为 token。共有 5 种类型的 token：关键字、标识符、常量、操作符以及分隔符。空白符，有时候也用来分割 token，会在本章提到。</p>
+<h3 id="Identifiers">1.1 标识符<a class="headerlink" href="#Identifiers" title="Permanent link">&para;</a></h3>
+<p>标识符是一种为变量、函数、新数据类型以及预处理宏命名的字符序列。你可以在标识符中使用字母、数字和下划线 '_'。</p>
+<p>标识符的第一个字符不能是数字。</p>
+<p>大小写字母是不同的，因此，<code>foo</code> 和 <code>FOO</code> 是不同的标识符。</p>
+<p>在使用 GNU 扩展时，你也可以使用美元符号 '$'</p>
+<h3 id="Keywords">1.2 关键字<a class="headerlink" href="#Keywords" title="Permanent link">&para;</a></h3>
+<p>关键字是特殊的标识符，被保留作为语言本身的一部分。你不能挪为他用。</p>
+<p>这里列出 C89 识别的关键字：</p>
+<pre><code>auto break case char const continue default do double else enum extern
+float for goto if int long register return short signed sizeof static
+struct switch typedef union unsigned void volatile while
+</code></pre>
+
+<p>ISO C99 增加了以下关键字：</p>
+<pre><code>inline _Bool _Complex _Imaginary
+</code></pre>
+
+<p>GNU 扩展增加了以下关键字：</p>
+<pre><code>__FUNCTION__ __PRETTY_FUNCTION__ __alignof __alignof__ __asm
+__asm__ __attribute __attribute__ __builtin_offsetof __builtin_va_arg
+__complex __complex__ __const __extension__ __func__ __imag __imag__ 
+__inline __inline__ __label__ __null __real __real__ 
+__restrict __restrict__ __signed __signed__ __thread __typeof
+__volatile __volatile__
+</code></pre>
+
+<p>C89 和 C99 的 GNU 扩展都可以识别下面这个关键字：</p>
+<pre><code>restrict
+</code></pre>
+
+<h3 id="Constants">1.3 常量<a class="headerlink" href="#Constants" title="Permanent link">&para;</a></h3>
+<p>常量就是数字或者字符的字面量，如 <code>5</code>、<code>'m'</code>。所有常量都有特定的数据类型；你可以使用强制类型转换来明确指定一个常量的类型，或者让编译器根据常量值使用默认类型。</p>
+<h4 id="Integer-Constants">1.3.1 整形常量<a class="headerlink" href="#Integer-Constants" title="Permanent link">&para;</a></h4>
+<p>整形常量是一个数字序列，可以带一个可选的前缀来指示进制。</p>
+<p>如果数字序列前带有 <code>0x</code> 或 <code>0X</code>（zero x 或者 zero X），这个常量就是十六进制的（base 16）。十六进制数的值可以使用数字 <code>0~9</code> 还有 字母 <code>a~f</code> 以及 <code>A~F</code>。例如：</p>
+<pre><code>0x2f
+0x88
+0xAB43
+0xAbCd
+0x1
+</code></pre>
+
+<p>如果第一个数位是 <code>0</code>（zero）并且下一个字符不是 <code>x</code> 或 <code>X</code>，则这个常量就是八进制的（base 8）。八进制的值只能使用数字 <code>0~7</code>； 8 和 9 不允许使用。例如：</p>
+<pre><code>057
+012
+03
+0241
+</code></pre>
+
+<p>不是以上两种的话，一个数字序列就被认为是十进制的（base 10）。十进制的值可以使用数字 <code>0~9</code>。例如：</p>
+<pre><code>459
+23901
+8
+12
+</code></pre>
+
+<p>有不同的整数类型，如短整型（short）、长整型（long）、有符号整型（signed）和无符号整型（unsigned）。你可以在常量后面加时一个或多个字母强制将一个整型常量变成长整型 和/或 无符号整型：</p>
+<pre><code>u
+U
+</code></pre>
+
+<p>无符号整型。</p>
+<pre><code>l
+L
+</code></pre>
+
+<p>长整形。</p>
+<p>例如，<code>45U</code> 是一个 <code>unsigned int</code> 常量。你也可以组合字母：<code>45UL</code> 就是一个 <code>unsigned long int</code> 常量了（字符可以是任意顺序）。</p>
+<p>ISO C99 和 GNU C 扩展都增加了 <code>long long int</code> 和 <code>unsigned long long int</code> 类型。你可以使用 2 个 L 来得到一个 <code>long long int</code> 常量；增加一个 'U' 将得到一个 <code>unsigned long long int</code> 常量。例如，<code>45ULL</code>。</p>
+<h4 id="Character-Constants">1.3.2 字符常量<a class="headerlink" href="#Character-Constants" title="Permanent link">&para;</a></h4>
+<p>一个字符常量通常是一个被单引号引起来的单个字符，如 <code>'Q'</code>。一个字符常量默认是 <code>int</code> 类型。</p>
+<p>一些字符，如单引号本身，不能使用一个字符表示。为了表示这样的字符，你可以使用如下的“转义序列”：</p>
+<p><code>\\</code> 反斜线</p>
+<p><code>\?</code> 问号</p>
+<p><code>\'</code> 单引号</p>
+<p><code>\"</code> 双引号</p>
+<p><code>\a</code> 声音警报</p>
+<p><code>\b</code> 退格字符</p>
+<p><code>\e</code> <code>&lt;ESC&gt;</code> 字符。（这个是 GNU 扩展）</p>
+<p><code>\f</code> 馈页</p>
+<p><code>\n</code> 换行</p>
+<p><code>\r</code> 回车</p>
+<p><code>\t</code> 水平制表符</p>
+<p><code>\v</code> 垂直制表符</p>
+<p><code>\o, \oo, \ooo</code> 八进制数</p>
+<p><code>\xh, \xhh, \xhhh, …</code> 十六进制数</p>
+<p>使用任何一个转义序列都要使用单引号引起来，并像对待其他字符一样。例如：字母 m 是 'm'；换行符是 '\n'。</p>
+<p>八进制数转义序列是一个反斜杠跟着 1 个、2 个或者 3 个八进制数字（0~7）。例如，八进制 101 等于十进制的 65，即 ASCII字符 'A'。因此，字符常量 '\101' 跟字符常量 'A' 是一样的。</p>
+<p>十六进制转义序列是一个反斜杠跟着一个 x 以及无限个十六进制数字（0~9, a~f, A~F）。
+虽然可能的十六进制数字字符串的长度是无限制的，但是任何给定字符集中的字符常量的数量都不是无限的。（例如，经常使用的扩展的ASCII字符串只有 256 个字符）如果你试图使用一个超过这个字符范围的十六进制值，你会得到一个编译时错误的。</p>
+<h4 id="Real-Number-Constants">1.3.3 实数常量<a class="headerlink" href="#Real-Number-Constants" title="Permanent link">&para;</a></h4>
+<p>实数常量是一个表示分数（浮点数）的值。它包含一个表示该数整数部分（或者该数）的数字序列，一个小数点，以及一个表示分数部分的数字序列。</p>
+<p>整数部分或者分数部分可以缺省，但不能都没有。例如：</p>
+<pre><code>double a, b, c, d, e, f;
+
+a = 4.7;
+
+b = 4.;
+
+c = 4;
+
+d = .7;
+
+e = 0.7;
+</code></pre>
+
+<p>（在第三个赋值语句中，整数常量 4 被自动从 int 转为 double）</p>
+<p>实数常量也可以跟一个 e 或 E，然后是一个整数指数。这个指数可正可负。</p>
+<pre><code>double x, y;
+
+x = 5e2; /* x is 5 * 100, or 500.0. */
+y = 5e-2; /* y is 5 * (1/100), or 0.05. */
+</code></pre>
+
+<p>你可以在实数常量尾部加一个字母让它拥有明确的类型。如果你加了一个 F（或者 f）它就是 <code>float</code> 类型了；如果你加了 L（或者 l）那它就是 <code>double</code> 类型了。如果不加，默认是 <code>double</code>。</p>
+<h4 id="String-Constants">1.3.4 字符串常量<a class="headerlink" href="#String-Constants" title="Permanent link">&para;</a></h4>
+<p>字符串常量是 0 个或多个字符、数字以及转义字符组成的序列，被双引号引起来。字符串常量算是“字符数组”类型。所有的字符串常量都包含一个 null 终止符（<code>\0</code>）作为最后一个字符。字符串作为字符数组来存储，但不包含其大小属性。null 终止符告诉字符串处理函数字符串在哪里结束。</p>
+<p>相邻的字符串常量会被拼接（合并）称一个字符串，并在尾部加上 null 终止符。</p>
+<p>字符串不能包含双引号，这是因为双引号用来引住字符串。为了能够在字符串中包含双引号，必须使用 <code>\"</code> 转义序列。你可以在字符串中使用任何在字符常量中使用的转义序列。下面是几个字符串常量的例子：</p>
+<pre><code>/* This is a single string constant. */
+&quot;tutti frutti ice cream&quot;
+
+/* These string constants will be concatenated, same as above. */
+&quot;tutti &quot; &quot;frutti&quot; &quot; ice &quot; &quot;cream&quot;
+
+/* This one uses two escape sequences. */
+&quot;\&quot;hello, world!\&quot;&quot;
+</code></pre>
+
+<p>如果一个字符串太长导致一行放不下，你可以使用反斜线 <code>\</code> 来分割成多行。</p>
+<pre><code>&quot;Today's special is a pastrami sandwich on rye bread with \
+a potato knish and a cherry soda.&quot;
+</code></pre>
+
+<p>因为相邻的字符串被自动拼接，所以你可以把长字符串跨越多行写成分离的相邻的多个字符串。例如：</p>
+<pre><code>&quot;Tomorrow's special is a corned beef sandwich on &quot;
+&quot;pumpernickel bread with a kasha knish and seltzer water.&quot;
+</code></pre>
+
+<p>和下面这样写是一样的：</p>
+<pre><code>&quot;Tomorrow's special is a corned beef sandwich on \
+pumpernickel bread with a kasha knish and seltzer water.&quot;
+</code></pre>
+
+<p>为了插入一个换行符，使得当打印字符串的时候能被打印在 2 行，你要使用转义序列 '\n'。</p>
+<pre><code>printf (&quot;potato\nknish&quot;);
+</code></pre>
+
+<p>会被打印成</p>
+<pre><code>potato
+knish
+</code></pre>
+
+<h3 id="Operators">1.4 操作符<a class="headerlink" href="#Operators" title="Permanent link">&para;</a></h3>
+<p>操作符是一种特殊的 token，用来对一个、两个或者三个操作数进行运算，如加号（<code>+</code>）或者减号（<code>-</code>）。操作符的全部内容可以在后面章节找到。详见 <a href="/Expressions-And-Operators/">表达式与操作符</a></p>
+<h3 id="Separators">1.5 分隔符<a class="headerlink" href="#Separators" title="Permanent link">&para;</a></h3>
+<p>分隔符用来分割 token。空白符（见下节）是一种分隔符，但它却不是一个 token。其他分隔符本身都是单字符 token：</p>
+<pre><code>( ) [ ] { } ; , . :
+</code></pre>
+
+<h3 id="White-Space">1.6 空白符<a class="headerlink" href="#White-Space" title="Permanent link">&para;</a></h3>
+<p>空白符是用于这几种字符的集体名词：空格符、水平制表符、换行符、垂直制表符以及馈页符。空白符会被忽略掉（在字符串常量和字符常量外面的）因此它们是可有可无，除非他们被用于分割 token。这意味着</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+int
+main()
+{
+  printf( &quot;hello, world\n&quot; );
+  return 0;
+}
+</code></pre>
+
+<p>和</p>
+<pre><code>#include &lt;stdio.h&gt; int main(){printf(&quot;hello, world\n&quot;);
+return 0;}
+</code></pre>
+
+<p>在功能上是相同的程序。</p>
+<p>尽管你必须使用空白符来分割许多 token，但操作符和操作数之间不需要空白符，其他分隔符与他们分割的内容之间也不需要空白符。</p>
+<pre><code>/* 下面这些都是正确的 */
+
+x++;
+x ++ ;
+x=y+z;
+x = y + z ;
+x=array[2];
+x = array [ 2 ] ;
+fraction=numerator / *denominator_ptr;
+fraction = numerator / * denominator_ptr ;
+</code></pre>
+
+<p>此外，任何允许使用一个空白符的地方，一定允许使用任意多个空白符。</p>
+<pre><code>/* These two statements are functionally identical. */
+x++;
+
+x
+       ++       ;
+</code></pre>
+
+<p>在字符串常量中，空格和水平制表符不能被忽略；确切说，他们是该字符串的一部分。因此</p>
+<pre><code>&quot;potato knish&quot;
+</code></pre>
+
+<p>和</p>
+<pre><code>&quot;potato                        knish&quot;
+</code></pre>
+
+<p>是不一样的。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Data-Types/" class="btn btn-neutral float-right" title="2. 数据类型">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Preface/" class="btn btn-neutral" title="前言"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Preface/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Data-Types/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

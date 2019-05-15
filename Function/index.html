@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>5. 函数 - Gnu C Reference Manual</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "5. \u51fd\u6570";
+    var mkdocs_page_input_path = "Function.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Gnu C Reference Manual</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Preface/">前言</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Lexical-Elements/">1. 词法元素</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Data-Types/">2. 数据类型</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Expressions-And-Operators/">3. 表达式与操作符</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Statement/">4. 语句</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">5. 函数</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#Function-Declarations">5.1 函数声明</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Function-Definitions">5.2 函数定义</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Calling-Functions">5.3 调用函数</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Function-Parameters">5.4 函数参数</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Variable-Length-Parameter-Lists">5.5 可变参数列表</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Calling-Functions-Through-Function-Pointers">5.6 通过函数指针调用函数</a></li>
+    
+
+    <li class="toctree-l2"><a href="#The-main-Function">5.7 main 函数</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Recursive-Functions">5.8 递归函数</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Static-Functions">5.9 静态函数</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Nested-Functions">5.10 嵌套函数</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Program-Structure-And-Scope/">6. 程序结构和作用域</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../A-Sample-Program/">7. 示例程序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Appendix-A-Overflow/">附录A：溢出</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../License/">License</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Gnu C Reference Manual</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>5. 函数</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>你可以使用函数来将程序的一部分分离出来，作为单独的子过程。要写一个函数，至少必须要定义它。显式函数声明是个好习惯；你可以不声明，但默认的隐式声明可能匹配不到函数定义。这样你收到编译时警告。</p>
+<p>每一个程序都至少需要一个叫做 <code>main</code> 的函数。这是程序的入口。</p>
+<h3 id="Function-Declarations">5.1 函数声明<a class="headerlink" href="#Function-Declarations" title="Permanent link">&para;</a></h3>
+<p>函数声明指定了函数的名字、参数列表和返回值类型。一个函数声明要以分号结束。下面是其一般形式：</p>
+<pre><code>return-type function-name (parameter-list);
+</code></pre>
+
+<p><em>return-type</em> 指示了该函数返回的值的类型。你可以使用 <code>void</code> 作为返回值类型声明一个不返回任何值的函数。</p>
+<p><em>function-name</em> 可以是任何合法的标识符。（详见 <a href="../Lexical-Elements/#Identifiers">标识符</a>）</p>
+<p><em>parameter-list</em> 包含 0 个或多个参数，用逗号隔开。一个参数通常包含数据类型和一个可选的名字。你可以声明一个拥有可变参数个数的函数（详见 <a href="#Variable-Length-Parameter-Lists">可变参数列表</a>），或者使用 <code>void</code> 声明一个没有参数的函数。不写 <code>parameter-list</code> 的话也表示没有参数，但最好使用 <code>void</code> 指明。</p>
+<p>下面的例子声明了一个带有 2 个参数的函数：</p>
+<pre><code>int foo (int, double);
+</code></pre>
+
+<p>如果要给一个参数加上名字，那名字要紧跟数据类型：</p>
+<pre><code>int foo (int x, double y);
+</code></pre>
+
+<p>参数名字可以是任意标识符（详见 <a href="../Lexical-Elements/#Identifiers">标识符</a>），并且如果有多个参数你不能在一个声明里使用相同的名字。这里的参数名字不需要和定义中的名字匹配。</p>
+<p>你要在第一次使用一个函数之前声明它。你可以把它放在头文件中，然后在使用该函数的源文件中用 <code>#include</code> 指令来包含该函数声明。</p>
+<h3 id="Function-Definitions">5.2 函数定义<a class="headerlink" href="#Function-Definitions" title="Permanent link">&para;</a></h3>
+<p>函数定义指明该函数实际都干什么。函数定义包含的信息有：函数名，返回类型，参数的类型和名字，以及函数体。函数体是一系列由花括号包起来的语句；实际上它就是一个代码块（详见 <a href="../Statement/#Blocks">代码块</a>）。</p>
+<p>其一般形式为：</p>
+<pre><code>return-type
+function-name (parameter-list)
+{
+    function-body
+}
+</code></pre>
+
+<p><em>return-type</em> 和 <em>function-name</em> 和 函数声明中的是一样的（详见 <a href="#Function-Declarations">函数声明</a>）。</p>
+<p><em>parameter-list</em> 基本和函数声明中的一样（详见 <a href="#Function-Declarations">函数声明</a>），除了在函数定义时你必须要指定参数名字。</p>
+<p>下面定义了一个函数 -- 它需要 2 个整型参数，并把它们的和作为返回值：</p>
+<pre><code>int
+add_values (int x, int y)
+{
+    return x + y;
+}
+</code></pre>
+
+<p>为了兼容 C 语言的初始设计，你可以在参数列表的右括号后指定参数类型。如下：</p>
+<pre><code>int
+add_values (x, y)
+    int x, int y;
+{
+    return x + y;
+}
+</code></pre>
+
+<p>然而，我们强烈不推荐这种代码风格；这样写会造成细微的类型转换问题，及其他问题。</p>
+<h3 id="Calling-Functions">5.3 调用函数<a class="headerlink" href="#Calling-Functions" title="Permanent link">&para;</a></h3>
+<p>你可以使用函数名字来调用函数，并且要提供其需要的参数。一般形式为：</p>
+<pre><code>function-name (parameters)
+</code></pre>
+
+<p>一个函数调用可以作为一个完整的语句，或者作为一个子表达式。下面是一个作为完整语句的例子：</p>
+<pre><code>foo (5);
+</code></pre>
+
+<p>这个例子中，函数 <code>foo</code> 被调用，并传给了参数 <code>5</code>。</p>
+<p>下面是一个作为子表达式的例子：</p>
+<pre><code>a = square (5);
+</code></pre>
+
+<p>假设函数 <code>square</code> 平方了它的参数，上面的例子会把值 25 赋给 <code>a</code>。</p>
+<p>如果参数列表不只一个参数，你要用逗号分割：</p>
+<pre><code>a = quux (5, 10);
+</code></pre>
+
+<h3 id="Function-Parameters">5.4 函数参数<a class="headerlink" href="#Function-Parameters" title="Permanent link">&para;</a></h3>
+<p>函数参数可以是任何表达式 -- 一个常量值、一个存储在变量中的值、一个内存地址或者由它们构成的复杂表达式。</p>
+<p>在函数体内，这些参数是你传进去的值的局部拷贝；你不能通过改变该局部拷贝来修改你传过去的值。</p>
+<pre><code>int x = 23;
+foo (x);
+…
+/* Definition for function foo. */
+int foo (int a)
+{
+    a = 2 * a;
+    return a;
+}
+</code></pre>
+
+<p>这个例子中，尽管参数 <code>a</code> 在函数 <code>foo</code> 中被修改，但你传进去变量 <code>x</code> 的值并没有修改。如果你希望修改 <code>x</code> 的原始值，那你必须把函数调用写进赋值语句：</p>
+<pre><code>x = foo (x);
+</code></pre>
+
+<p>如果你传进去的是一个内存地址（也就是一个指针），那么你可以访问（和修改）存在该地址的数据。这相当于其他语言中的引用传递，但并不相同：内存地址只是一个值，就像其他值一样，它自己是不能被修改的。传一个指针和传一个整数的差别在于你想要在函数中做什么。</p>
+<p>下面的例子使用指针作为参数来调用函数：</p>
+<pre><code>void
+foo (int *x)
+{
+    *x = *x + 42;
+}
+…
+int a = 15;
+foo (&amp;a);
+</code></pre>
+
+<p>这个函数的形式参数是指向 <code>int</code> 类型的指针。我们调用这个函数要传给它一个 <code>int</code> 类型变量的地址。在函数用解引用这个指针，我们可以查看和修改存储在该地址的值。上面就把 <code>a</code> 的值修改为了 <code>57</code>。</p>
+<p>即使你不想改变存储在一个地址的值，如果你要传递的变量类型非常大，通常传递指针就比传递变量本身有用，尤其在你需要节省内存或者减少参数拷贝的消耗。例如：</p>
+<pre><code>struct foo
+{
+    int x;
+    float y;
+    double z;
+};
+
+void bar (const struct foo *a);
+</code></pre>
+
+<p>在这个例子中，除非你工作的计算机内存很大（不在乎内存消耗），传递指向该结构体实例的指针使用的内存要比传统结构体实例本身要少得多。</p>
+<p>数组总是会作为指针传递。</p>
+<pre><code>void foo (int a[]);
+…
+int x[100];
+foo (x);
+</code></pre>
+
+<p>这个例子中，调用带有参数 <code>a</code> 的函数 <code>foo</code> 不会复制整个数组到 <code>foo</code> 里面的局部参数，而是将 <code>x</code> 作为指向第一个参数 <code>x</code> 的指针传过去。要注意，你在函数里面不能使用 <code>sizeof</code> 来求数组 <code>x</code> 的大小，因为 <code>sizeof</code> 会告诉你指针 <code>x</code> 的大小。实际上，上面的代码等价于：</p>
+<pre><code>void foo (int *a);
+…
+int x[100];
+foo (x);
+</code></pre>
+
+<p>明确地在参数中指明数组的长度视没有用的。如果你真的想要把数组作为值传递，你可以把它包裹在结构体里，尽管这样做没啥用（传递一个 <code>const</code> 修饰的指针通常足以说明调用者不应该修改该数组）。</p>
+<h3 id="Variable-Length-Parameter-Lists">5.5 可变参数列表<a class="headerlink" href="#Variable-Length-Parameter-Lists" title="Permanent link">&para;</a></h3>
+<p>你可以定义一个接受可变参数数量的函数；这种函数被称作 <em>可变函数</em>。要定义这样的函数，需要至少一个已知类型的参数，但是其他参数是可选的；并且数量和数据类型都是可变的。</p>
+<p>你先正常列出初始参数，随后使用一个省略号 <code>...</code>。下面是其原型：</p>
+<pre><code>int add_multiple_values (int number, ...);
+</code></pre>
+
+<p>要使其工作，需要用到库头文件 <code>&lt;stdarg.h&gt;</code> 中定义的宏，因此你必须包含它。要获得这些宏的详细描述，详见 <em>The GNU C Library</em> 手册关于可变函数的章节。</p>
+<p>举例如下：</p>
+<pre><code>int
+add_multiple_values (int number, ...)
+{
+    int counter, total = 0;
+
+    /* Declare a variable of type ‘va_list’. */
+    va_list parameters;
+
+    /* Call the ‘va_start’ function. */
+    va_start (parameters, number);
+
+    for (counter = 0; counter &lt; number; counter++)
+    {
+        /* Get the values of the optional parameters. */
+        total += va_arg (parameters, int);
+    }
+
+    /* End use of the ‘parameters’ variable. */
+    va_end (parameters);
+
+    return total;
+}
+</code></pre>
+
+<p>要使用可变参数，你需要知道它们有多少个。因为是可变的，所以不能硬编码，但是如果你不知道有多少个参数，那你就很难知道什么时候停止使用 <code>va_arg</code> 函数。在上面的例子中，函数 <code>add_multiple_values</code> 的第一个参数 <code>number</code> 是实际传过来的可变参数的个数。因此我们可以像下面这样调用它：</p>
+<pre><code>sum = add_multiple_values (3, 12, 34, 190);
+</code></pre>
+
+<p>第一个参数代表了它后面有多少可变参数。</p>
+<p>此外要注意，你实际不需要使用 <code>va_end</code> 函数。实际上，GCC 中这个函数根本啥也不做。然而，使用它可以最大化地兼容其他编译器。</p>
+<p>参见 <em>The GNU C Library Reference Manual</em> 中的 <a href="http://www.gnu.org/software/libc/manual/html_mono/libc.html#Variadic-Functions">Variadic Functions</a> 章节。</p>
+<h3 id="Calling-Functions-Through-Function-Pointers">5.6 通过函数指针调用函数<a class="headerlink" href="#Calling-Functions-Through-Function-Pointers" title="Permanent link">&para;</a></h3>
+<p>你可以通过函数指针来调用函数。这时解引用运算符 <code>*</code> 是可选的。</p>
+<pre><code>#include &lt;stdio.h&gt;
+
+void foo (int i)
+{
+    printf (&quot;foo %d!\n&quot;, i);
+}
+void bar (int i)
+{
+    printf (&quot;%d bar!\n&quot;, i);
+}
+void message (void (*func)(int), int times)
+{
+    int j;
+    for (j=0; j&lt;times; ++j)
+    func (j);  /* (*func) (j); would be equivalent. */
+}
+
+void example (int want_foo) 
+{
+    void (*pf)(int) = &amp;bar; /* The &amp; is optional. */
+    if (want_foo)
+        pf = foo;
+    message (pf, 5);
+}
+</code></pre>
+
+<h3 id="The-main-Function">5.7 main 函数<a class="headerlink" href="#The-main-Function" title="Permanent link">&para;</a></h3>
+<p>每一个程序都至少需要的一个函数叫做 <code>main</code> 函数。它是程序执行的入口。你不需要为 <code>main</code> 写声明或原型，但是你要定义它。</p>
+<p><code>main</code> 函数的返回值类型必须是 <code>int</code>。你可以不必为 <code>main</code> 函数指定返回值类型。然而，如果要指定只能是 <code>int</code>。</p>
+<p>通常，<code>main</code> 的返回值代表程序的退出状态。值 <code>0</code> 或者 <code>EXIT_SUCCESS</code> 代表成功；<code>EXIT_FAILURE</code> 代表错误。此外，该返回值的意义由实现定义。</p>
+<p>直到 <code>main</code> 函数结尾的 <code>}</code> 都没有 <code>return</code> 语句，或者执行了一个没有返回值的 <code>return</code> 语句（也就是 <code>return;</code>）是一样的。在 C89 中，结果是未定义的，但在 C99 中等效于 <code>return 0;</code>。</p>
+<p>你的 <code>main</code> 可以不带参数（也就是 <code>int main(void)</code>），或者要从命令行接收参数。下面的例子是没有参数的：</p>
+<pre><code>int
+main (void)
+{
+    puts (&quot;Hi there!&quot;);
+    return 0;
+}
+</code></pre>
+
+<p>要从命令行接收参数，你的 <code>main</code> 要有 2 个参数，<code>int argc</code> 和 <code>char *argv[]</code>。名字可以变，但类型一定要是 <code>int</code> 类型和指向 <code>char</code> 类型的指针数组。<code>argc</code> 是从命令行接收的参数的个数，包含程序名字本身。<code>argv</code> 是参数数组，参数是字符串。数组的第一个元素 <code>argv[0]</code> 是你在命令行中输入的程序的名字<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">1</a></sup>；后面的数组元素是跟在程序名字后面的参数。</p>
+<p>下面是一个接收命令行参数的例子，会把这些参数打印出来：</p>
+<pre><code>int
+main (int argc, char *argv[])
+{
+    int counter;
+
+    for (counter = 0; counter &lt; argc; counter++)
+        printf (&quot;%s\n&quot;, argv[counter]);
+
+    return 0;
+}
+</code></pre>
+
+<h3 id="Recursive-Functions">5.8 递归函数<a class="headerlink" href="#Recursive-Functions" title="Permanent link">&para;</a></h3>
+<p>你可以定义递归性的函数，也就是函数自己调用自己。这里有一个计算整数阶乘的例子：</p>
+<pre><code>int
+factorial (int x)
+{
+    if (x &lt; 1)
+        return 1;
+    else
+        return (x * factorial (x - 1));
+}
+</code></pre>
+
+<p>注意，你不要写一个无限递归的函数。上面的例子中，一旦 <code>x</code> 为 1，递归就结束了。然而在下面的例子中，递归不会停止，直到程序被终止或者内存被耗尽：</p>
+<pre><code>int
+watermelon (int x)
+{
+    return (watermelon (x));
+}
+</code></pre>
+
+<p>函数当然也可以间接地递归。</p>
+<h3 id="Static-Functions">5.9 静态函数<a class="headerlink" href="#Static-Functions" title="Permanent link">&para;</a></h3>
+<p>如果你想定义一个只在函数的源文件中使用的函数，你可以把它定义成静态的：</p>
+<pre><code>static int
+foo (int x)
+{
+    return x + 42;
+}
+</code></pre>
+
+<p>如果你要构建一个可重用的函数库，其中包含一些不希望终端用户调用的子例程，这将非常有用。</p>
+<p>这样定义的函数被说成是 <em>静态连接的</em>。不幸的是，<code>static</code> 这个关键字具有多重含义；参见 <a href="../Data-Types/#Storage-Class-Specifiers">存储类别说明符</a></p>
+<h3 id="Nested-Functions">5.10 嵌套函数<a class="headerlink" href="#Nested-Functions" title="Permanent link">&para;</a></h3>
+<p>作为 GNU C 扩展，你可以在一个函数里面定义函数，也就是嵌套函数。</p>
+<p>下面的例子就是使用嵌套函数定义的尾递归阶乘函数：</p>
+<pre><code>int
+factorial (int x)
+{
+    int
+    factorial_helper (int a, int b)
+    {
+        if (a &lt; 1)
+        {
+            return b;
+        }
+        else
+        {
+            return factorial_helper ((a - 1), (a * b));
+        }
+    }
+
+    return factorial_helper (x, 1);
+}
+</code></pre>
+
+<p>要注意的是，嵌套函数一定要和变量声明一起写在函数开头，所有的其他语句跟在后面。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:4">
+<p>在极少数情况下，<code>argv[0]</code> 可以是空指针（这时 <code>argc</code> 是 0）；或者 <code>argv[0][0]</code> 可以是空指针。但不管怎样 <code>argv[argc]</code> 一定是空指针。&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Program-Structure-And-Scope/" class="btn btn-neutral float-right" title="6. 程序结构和作用域">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Statement/" class="btn btn-neutral" title="4. 语句"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Statement/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Program-Structure-And-Scope/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>3. 表达式与操作符 - Gnu C Reference Manual</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "3. \u8868\u8fbe\u5f0f\u4e0e\u64cd\u4f5c\u7b26";
+    var mkdocs_page_input_path = "Expressions-And-Operators.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Gnu C Reference Manual</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Preface/">前言</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Lexical-Elements/">1. 词法元素</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Data-Types/">2. 数据类型</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">3. 表达式与操作符</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#Expressions">3.1 表达式</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Assignment-Operators">3.2 赋值操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Incrementing-and-Decrementing">3.3 自增和自减</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Arithmetic-Operators">3.4 算术运算操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Complex-Conjugation">3.5 复数共轭</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Comparison-Operators">3.6 比较操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Logical-Operators">3.7 逻辑操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Bit-Shifting">3.8 位移</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Bitwise-Logical-Operators">3.9 位逻辑操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Pointer-Operators">3.10 指针操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#The-sizeof-Operator">3.11 sizeof 操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="##Type-Casts">3.12 类型转换</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Array-Subscripts">3.13 数组下标</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Function-Calls-as-Expressions">3.14 函数调用作为表达式</a></li>
+    
+
+    <li class="toctree-l2"><a href="#The-Comma-Operator">3.15 逗号操作符</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Member-Access-Expressions">3.16 成员访问表达式</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Conditional-Expressions">3.17 条件表达式</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Statements-and-Declarations-in-Expressions">3.18 表达式中的语句和声明</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Operator-Precedence">3.19 操作符优先级</a></li>
+    
+
+    <li class="toctree-l2"><a href="#Order-of-Evaluation">3.20 求值顺序</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#Side-Effects">3.20.1 副作用</a></li>
+        
+            <li><a class="toctree-l3" href="#Sequence-Points">3.20.2 序列点</a></li>
+        
+            <li><a class="toctree-l3" href="#Sequence-Points-Constrain-Expressions">3.20.3 序列点约束表达式</a></li>
+        
+            <li><a class="toctree-l3" href="#Sequence-Points-and-Signal-Delivery">3.20.4 序列点和信号传递</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Statement/">4. 语句</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Function/">5. 函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Program-Structure-And-Scope/">6. 程序结构和作用域</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../A-Sample-Program/">7. 示例程序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Appendix-A-Overflow/">附录A：溢出</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../License/">License</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Gnu C Reference Manual</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>3. 表达式与操作符</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="Expressions">3.1 表达式<a class="headerlink" href="#Expressions" title="Permanent link">&para;</a></h3>
+<p>一个<em>表达式</em>由至少一个操作数和 0 个或多个操作符组成。操作数是有类型的对象，如常量、变量以及有返回值的函数调用。例如：</p>
+<pre><code>47
+2 + 2
+cosine(3.14159) /* 
+We presume this returns a floating point value.
+ */
+</code></pre>
+
+<p>圆括号分组的子表达式:</p>
+<pre><code>( 2 * ( ( 3 + 10 ) - ( 2 * 6 ) ) )
+</code></pre>
+
+<p>最内层的表达式最先计算。上面的例子中，<code>3 + 10</code> 和 <code>2 * 6</code> 分别计算为 <code>13</code> 和 <code>12</code>。然后 <code>13</code> 减去 <code>12</code>，得到 <code>1</code>。最后 <code>1</code> 乘上 <code>2</code> 得到 <code>2</code>。最外层的圆括号是可选的。</p>
+<p>一个<em>操作符</em>给它的<em>操作数</em>指定一个操作。不同操作符可能有 1 个，2 个或者 3 个操作数。</p>
+<h3 id="Assignment-Operators">3.2 赋值操作符<a class="headerlink" href="#Assignment-Operators" title="Permanent link">&para;</a></h3>
+<p>赋值操作符把一个值存到变量里面。 C 提供了多种赋值操作符。</p>
+<p>标准赋值操作 <code>=</code> 符简单地把右边的操作符存到左边的变量里面。和所有的赋值操作符一样，左操作数（通常也叫左值）不能是字面量或常值。</p>
+<pre><code>int x = 10;
+float y = 45.12 + 2.0;
+int z = (2 * (3 + function () ));
+
+struct foo {
+    int bar;
+    int baz;
+} quux = {3, 4};
+</code></pre>
+
+<p>注意，不像下面那些赋值操作符，你可以用 <code>=</code> 来赋值结构体类型。</p>
+<p>组合赋值操作符先对左右 2 个操作数进行操作，然后将结果赋给左操作数。下面列出了组合赋值操作符和它们的简要说明：</p>
+<ul>
+<li>
+<p><code>+=</code></p>
+<p>先相加，再把结果赋值。</p>
+</li>
+<li>
+<p><code>-=</code></p>
+<p>先把左操作数减去右操作数，再把结果赋值。</p>
+</li>
+<li>
+<p><code>*=</code></p>
+<p>先相乘，再把结果赋值。</p>
+</li>
+<li>
+<p><code>/=</code></p>
+<p>先把左操作数除以右操作数，再把结果赋值。</p>
+</li>
+<li>
+<p><code>%=</code></p>
+<p>先把左操作数模右操作数，再把结果赋值。</p>
+</li>
+<li>
+<p><code>&lt;&lt;=</code></p>
+<p>先把左操作数左移右操作数个位，再把结果赋值。</p>
+</li>
+<li>
+<p><code>&gt;&gt;=</code></p>
+<p>先把左操作数右移右操作数个位，再把结果赋值。</p>
+</li>
+<li>
+<p><code>&amp;=</code></p>
+<p>先按位与，再把结果赋值。</p>
+</li>
+<li>
+<p><code>^=</code></p>
+<p>先按位异或，再把结果赋值。</p>
+</li>
+<li>
+<p><code>|=</code></p>
+<p>先按位或，再把结果赋值。</p>
+</li>
+</ul>
+<p>下面是一个组合赋值操作符的例子：</p>
+<pre><code>x += y;
+</code></pre>
+
+<p>既然计算左值 <code>x</code> 没有副作用，那下面的代码可以写成：</p>
+<pre><code>x = x + y;
+</code></pre>
+
+<h3 id="Incrementing-and-Decrementing">3.3 自增和自减<a class="headerlink" href="#Incrementing-and-Decrementing" title="Permanent link">&para;</a></h3>
+<p>自增操作符 <code>++</code> 会将它的操作数加 1。该操作数可以是一个基本数据类型的变量，一个指针，或者一个枚举变量。你也可以把自增操作符放在操作数前面或者后面。例如：</p>
+<pre><code>char w = '1';
+int x = 5;
+char y = 'B';
+float z = 5.2;
+int *p = &amp;x;
+
+++w;   /* w is now the character ‘2’ (not the value 2). */
+x++;   /* x is now 6. */
+++y;   /* y is now ‘C’ (on ASCII systems). */
+z++;   /* z is now 6.2. */
+++p;   /* p is now &amp;x + sizeof(int). */
+</code></pre>
+
+<p>（注意，对一个指针使用自增只有在你确信新的指针值是一个合法内存地址时才有意义）</p>
+<p>前置自增操作符会在操作数被计算前加 1. 而后置自增操作在操作数被计算后加 1。对于上面的例子，改变自增操作符的位置是没有区别的。然而，对于下面的例子，他们是不同的：</p>
+<pre><code>int x = 5;
+printf (&quot;%d \n&quot;, x++);    /* Print x and then increment it. */
+/* x is now equal to 6. */
+printf (&quot;%d \n&quot;, ++x);    /* Increment x and then print it. */
+</code></pre>
+
+<p>上面例子的结果是：</p>
+<pre><code>5
+7
+</code></pre>
+
+<p>同样你可以使用自减操作符使操作数减 1：</p>
+<pre><code>int x = 5;
+
+x--; /* x is now 4. */
+</code></pre>
+
+<p>自减操作符也有前置和后置的概念。</p>
+<h3 id="Arithmetic-Operators">3.4 算术运算操作符<a class="headerlink" href="#Arithmetic-Operators" title="Permanent link">&para;</a></h3>
+<p>C 提供标准算术运算操作符：加减乘除，还有取模和相反数。这些操作符用法很直接；例如：</p>
+<pre><code>/* Addition. */
+x = 5 + 3;
+y = 10.23 + 37.332;
+quux_pointer = foo_pointer + bar_pointer;
+/* Subtraction. */
+x = 5 - 3;
+y = 57.223 - 10.903;
+quux_pointer = foo_pointer - bar_pointer;
+</code></pre>
+
+<p>指针可以加减，但不能乘除。</p>
+<pre><code>/* Multiplication. */
+x = 5 * 3;
+y = 47.4 * 1.001;
+/* Division. */
+x = 5 / 3;
+y = 940.0 / 20.2;
+</code></pre>
+
+<p>正数的整数除向 0 截断，如 <code>5/3</code> 等于 <code>1</code>。然而，如果操作数是负的，截断方向由具体实现定义。关于有符号整数除的溢出问题详见 <a href="../Appendix-A-Overflow/#Signed-Integer-Division">有符号整数除法</a></p>
+<p>你可以使用取模操作符 <code>%</code> 来计算 2 个操作数的余数，并且操作数是有方向的： <code>3 % 5</code> 和 <code>5 % 3</code> 是不同的。操作数必须是基础数据类型表达式。</p>
+<pre><code>/* Modular division. */
+x = 5 % 3;
+y = 74 % 47;
+</code></pre>
+
+<p>取模除得到 2 个操作数相除后的余数。操作数必须是基础整数类型。</p>
+<pre><code>/* Negation. */
+int x = -5;
+float y = -3.14159;
+</code></pre>
+
+<p>如果你对一个 unsigned 类型的操作数使用相反数操作符，得到的结果不是相反数，而是该 unsigned 类型的最大值减去该操作数。</p>
+<p>很多系统使用补码运算，因此在这些系统上 signed 类型的最小负数的相反数比最大整数要大。例如：</p>
+<pre><code>#include &lt;limits.h&gt;
+#include &lt;stdio.h&gt;
+
+int main (int argc, char *argv[]) 
+{
+    int x;
+    x = INT_MAX;
+    printf(&quot;INT_MAX  = %d\n&quot;, x);
+    x = INT_MIN;
+    printf(&quot;INT_MIN  = %d\n&quot;, x);
+    x = -x;
+    printf(&quot;-INT_MIN = %d\n&quot;, x);
+    return 0;
+}
+</code></pre>
+
+<p>输出的结果是：</p>
+<pre><code>INT_MAX  = 2147483647
+INT_MIN  = -2147483648
+-INT_MIN = -2147483648
+</code></pre>
+
+<p>你也可以在一个数字表达式前面加上整数操作数 +，但并没有意义：</p>
+<pre><code>int x = +42;
+</code></pre>
+
+<p>数值总是被假定为整数，除非你明确地加了符号，因此，这个操作符没有任何作用。</p>
+<h3 id="Complex-Conjugation">3.5 复数共轭<a class="headerlink" href="#Complex-Conjugation" title="Permanent link">&para;</a></h3>
+<p>GNU 扩展让你可以使用复数共轭操作符 <code>~</code> 来对一个复数操作符取共轭 -- 即转换虚部的符号。操作数必须是一个复数类型表达式。例如：</p>
+<pre><code>__complex__ int x = 5 + 17i;
+
+printf (&quot;%d  \n&quot;, (x * ~x));
+
+</code></pre>
+
+<p>因为复数 <em>(a + bi)</em> 乘以它的共轭等于 <em>a^2 + b^2</em>。所以，上面 <code>printf</code> 将会打印 314，即 <em>25 + 289</em>。</p>
+<h3 id="Comparison-Operators">3.6 比较操作符<a class="headerlink" href="#Comparison-Operators" title="Permanent link">&para;</a></h3>
+<p>你使用比较操作符来确定 2 个操作数的相对关系：是相等，还是一个比另外一个大，还是一个比另外一个小，等等。当你使用比较操作符时，结果要么是 1 要么是 0， 分别代表真和假。</p>
+<p>（在下面的代码示例中，变量 <code>x</code> 和 <code>y</code> 代表 2 个算术类型的表达式或者指针）</p>
+<p>相等操作符 == 测试 2 个操作数是否相等。结果 1 代表相等，0 代表不等。</p>
+<pre><code>if (x == y)
+    puts (&quot;x is equal to y&quot;);
+else
+    puts (&quot;x is not equal to y&quot;);
+</code></pre>
+
+<p>不等操作符 != 测试 2 个操作数是否不相等。结果 1 代表不相等，0 代表相等。</p>
+<pre><code>if (x != y)
+    puts (&quot;x is not equal to y&quot;);
+else
+    puts (&quot;x is equal to y&quot;);
+</code></pre>
+
+<p>比较浮点数相等或者不等可能会得到意想不到的结。详见 <a href="../Data-Types/#Real-Number-Types">实数类型</a></p>
+<p>你可以比较 2 个函数指针是否相等；该比较会测试 2 个指针是否指向同一个函数。</p>
+<p>除了相等和不等，下面的操作符可以用来测试一个值是否小于、大于、小于等于或者大于等于另外一个值。下面是示例：</p>
+<pre><code>if (x &lt; y)
+    puts (&quot;x is less than y&quot;);
+if (x &lt;= y)
+    puts (&quot;x is less than or equal to y&quot;);
+if (x &gt; y)
+    puts (&quot;x is greater than y&quot;);
+if (x &gt;= y)
+    puts (&quot;x is greater than or equal to y&quot;);
+</code></pre>
+
+<h3 id="Logical-Operators">3.7 逻辑操作符<a class="headerlink" href="#Logical-Operators" title="Permanent link">&para;</a></h3>
+<p>逻辑操作符测试一对操作数的真值。在 C 中，任何非 0 表达式都是真，相反都是假。</p>
+<p>逻辑与操作符 <code>&amp;&amp;</code> 测试 2 个操作数是否都是真。如过第一个表达式为假，则第二个表达式将不会被计算。</p>
+<pre><code>if ((x == 5) &amp;&amp; (y == 10))
+    printf (&quot;x is 5 and y is 10&quot;);
+</code></pre>
+
+<p>逻辑与操作符 <code>||</code> 测试 2 个操作数是否至少有一个为真。如过第一个表达式为真，则第二个表达式将不会被计算。</p>
+<pre><code>if ((x == 5) || (y == 10))
+    printf (&quot;x is 5 or y is 10&quot;);
+</code></pre>
+
+<p>你可以在逻辑表达式前面加一个逻辑非操作符 <code>!</code> 来反转该表达式的真值：</p>
+<pre><code>if (!(x == 5))
+    printf (&quot;x is not 5&quot;);
+</code></pre>
+
+<p>因为逻辑表达式对的第二个操作数不是总会被计算，所以你不能写下面这种不直观的代码：</p>
+<pre><code>if (foo &amp;&amp; x++)
+    bar();
+</code></pre>
+
+<p>如果 <code>foo</code> 是 0，不仅 <code>bar</code> 函数不会被调用，<code>x</code> 也不会自增。如果你打算不管 <code>foo</code> 的值是什么都要自增 <code>x</code>，你应该把它写到逻辑与表达式外面。</p>
+<h3 id="Bit-Shifting">3.8 位移<a class="headerlink" href="#Bit-Shifting" title="Permanent link">&para;</a></h3>
+<p>你使用左移操作符 <code>&lt;&lt;</code> 把它的第一个操作数向左移位。第二个操作数代表要移多少位。移出左边界的位将被丢弃，右侧新加入的位为 0.</p>
+<pre><code>x = 47;    /* 47 is 00101111 in binary. */
+x &lt;&lt; 1;    /* 00101111 &lt;&lt; 1 is 01011110. */
+</code></pre>
+
+<p>类似地，你使用右移操作符 <code>&gt;&gt;</code> 把它的第一个操作数向右移位。第二个操作数代表要移多少位。移出右边界的位将被丢弃，左侧新加入的位<em>通常</em>为 0. 但如果第一个操作数是一个有符号的负数，那么新加的位会是 0 <em>或者</em> 之前最左边位置的值。</p>
+<pre><code>x = 47;   /* 47 is 00101111 in binary. */
+x &gt;&gt; 1;   /* 00101111 &gt;&gt; 1 is 00010111. */
+</code></pre>
+
+<p>对于 <code>&lt;&lt;</code> 和 <code>&gt;&gt;</code> ，如果第二个操作数比第一个操作数的位宽还要大，或者第二个操作数是复数，该行为是未定义的。</p>
+<p>你可以使用移位操作数来做一些有趣的 hack 操作。例如，给你一个日期包含天 <code>d</code>，月 <code>m</code> 和年 <code>y</code>，你可以把它存到一个数 <code>x</code> 里面：</p>
+<pre><code>int d = 12;
+int m = 6;
+int y = 1983;
+int x = (((y &lt;&lt; 4) + m) &lt;&lt; 5) + d;
+</code></pre>
+
+<p>你也可以使用移位操作符和取模来把原来的 <code>d</code>、<code>m</code>、<code>y</code> 从 <code>x</code> 里面提取出来：</p>
+<pre><code>d = x % 32;
+m = (x &gt;&gt; 5) % 16;
+y = x &gt;&gt; 9;
+</code></pre>
+
+<h3 id="Bitwise-Logical-Operators">3.9 位逻辑操作符<a class="headerlink" href="#Bitwise-Logical-Operators" title="Permanent link">&para;</a></h3>
+<p>C 提供了按位与，按位或，按位异或和按位取反操作符。</p>
+<p>按位与测试 2 个操作数的每一位，对应位都为 1 则该位结果为 1。其他情况都为 0。下面用二进制数来演示如何工作：</p>
+<pre><code>11001001 &amp; 10011011 = 10001001
+</code></pre>
+
+<p>按位或测试 2 个操作数的每一位，对应位都为 0 则该位结果为 0。其他情况都为 1。</p>
+<pre><code>11001001 | 10011011 = 11011011
+</code></pre>
+
+<p>按位异或测试 2 个操作数的每一位，对应位不同则该位结果为 1。其他情况都为 0。</p>
+<pre><code>11001001 ^ 10011011 = 01010010
+</code></pre>
+
+<p>按位取反反转它的操作数的每一位：</p>
+<pre><code>~11001001 = 00110110
+</code></pre>
+
+<p>在 C 里面，这些操作符只能用于整数类型（或字符类型)，并且为了最大的可移植性，你应该只对 unsiged 整数类型使用按位取反操作符。例如：</p>
+<pre><code>unsigned int foo = 42;
+unsigned int bar = 57;
+unsigned int quux;
+
+quux = foo &amp; bar;
+quux = foo | bar;
+quux = foo ^ bar;
+quux = ~foo;
+</code></pre>
+
+<h3 id="Pointer-Operators">3.10 指针操作符<a class="headerlink" href="#Pointer-Operators" title="Permanent link">&para;</a></h3>
+<p>你可以使用地址操作符 <code>&amp;</code> 来获取一个对象的内存地址。</p>
+<pre><code>int x = 5;
+int *pointer_to_x = &amp;x;
+</code></pre>
+
+<p>使用 <code>&amp;</code> 来获取一个函数的地址是不必要的，尽管你可以：</p>
+<pre><code>extern int foo (void);
+int (*fp1) (void) = foo; /* fp1 points to foo */
+int (*fp2) (void) = &amp;foo; /* fp2 also points to foo */
+</code></pre>
+
+<p>函数指针和数据指针是不兼容的，因此你不能把函数的地址存进数据指针，然后拷贝到函数指针并成功调用它。有可能在某些系统上可以工作，但这是不可移植的。</p>
+<p>GNU 的 C89 的扩展中，你还可以使用标签地址操作符 <code>&amp;&amp;</code> 来获取一个标签的地址。结果是一个 <code>void*</code> 指针，可以用于 <code>goto</code> 语句。详见 <a href="../Statement/#The-goto-Statement">goto 语句</a></p>
+<p>假定一个内存地址存储在一个指针里，你可以使用间接运算符 <code>*</code> 来获取存在该地址的值（这被称作解引用指针）</p>
+<pre><code>int x = 5;
+int y;
+int *ptr;
+
+ptr = &amp;x;    /* ptr now holds the address of x. */
+
+y = *ptr;    /* y gets the value stored at the address
+                stored in ptr. */
+</code></pre>
+
+<p>要避免解引用一个没有初始化为已知内存地址的指针。</p>
+<h3 id="The-sizeof-Operator">3.11 sizeof 操作符<a class="headerlink" href="#The-sizeof-Operator" title="Permanent link">&para;</a></h3>
+<p>你可以使用 <code>sizeof</code> 操作符来获取它的操作数的数据类型的大小（按字节）。操作数可以是类型指示符（如 <code>int</code> 或 <code>float</code>）,也可以是任何合法表达式。当操作数是类型名字时，它必须放在圆括号里。如：</p>
+<pre><code>size_t a = sizeof(int);
+size_t b = sizeof(float);
+size_t c = sizeof(5);
+size_t d = sizeof(5.143);
+size_t e = sizeof a;
+</code></pre>
+
+<p><code>sizeof</code> 的结果是 <code>size_t</code> 类型，它在头文件 <code>&lt;stddef.h&gt;</code> 中定义。<code>size_t</code> 是无符号整数类型，它可能是 <code>unsigned int</code> 或者 <code>unsigned long int</code>，取决于你的系统。</p>
+<p><code>size_t</code> 作为循环的下标很方便，因为它能保证放下任何数组的大小；但 <code>int</code> 不行。</p>
+<p><code>sizeof</code> 操作符可以用来计算数组元素的个数：</p>
+<pre><code>#include &lt;stddef.h&gt;
+#include &lt;stdio.h&gt;
+
+static const int values[] = { 1, 2, 48, 681 };
+#define ARRAYSIZE(x) (sizeof x/sizeof x[0])
+
+int main (int argc, char *argv[]) 
+{
+    size_t i;
+    for (i = 0; i &lt; ARRAYSIZE(values); i++) 
+    {
+        printf(&quot;%d\n&quot;, values[i]);
+    }
+    return 0;
+}
+</code></pre>
+
+<p>有 2 种情况这种技术不能工作。第一种是数组的元素的大小为 0（GNU 扩展支持大小为 0 的结构）。第二种是数组是一个函数的参数（详见 <a href="../Function/#Function-Parameters">函数参数</a>)。</p>
+<h3 id="#Type-Casts">3.12 类型转换<a class="headerlink" href="##Type-Casts" title="Permanent link">&para;</a></h3>
+<p>你可以使用类型转换显式地将一个表达式变成指定的数据类型。一个类型转包括一个圆括号括起来的类型指示符，后跟一个表达式。为了确保正确的转换，你应该给后面跟的表达式也加一个圆括号。例如：</p>
+<pre><code>float x;
+int y = 7;
+int z = 3;
+x = (float) (y / z);
+</code></pre>
+
+<p>在这个例子中，因为 <code>y</code> 和 <code>z</code> 都是整型，所以 y / z 是整数除；即使 <code>x</code> 是浮点型，它也接受值 2。显式转换除法的结果为 <code>float</code> 类型并不好，因为 y / z 的值已经是 2 了。</p>
+<p>为了修复这个问题，你需要把除法的一个操作数在除法进行之前转成浮点型：</p>
+<pre><code>float x;
+int y = 7;
+int z = 3;
+x = (y / (float)z);
+</code></pre>
+
+<p>这里，一个接近 2.333· 的浮点数被赋给了 <code>x</code>。</p>
+<p>类型转换只对表标量有用（像整型，浮点型或指针类型）。因此，下面这种是不允许的：</p>
+<pre><code>struct fooTag { /* members ... */ };
+struct fooTag foo;
+unsigned char byteArray[8];
+
+foo = (struct fooType) byteArray; /* Fail! */
+</code></pre>
+
+<h3 id="Array-Subscripts">3.13 数组下标<a class="headerlink" href="#Array-Subscripts" title="Permanent link">&para;</a></h3>
+<p>你可以通过指定数组名字和方括号括起来的数组下标（或者叫索引，或者叫元素数）的形式来访问数组元素。例如，假设有一个叫 <code>my_array</code> 的整型数组：</p>
+<pre><code>my_array[0] = 5;
+</code></pre>
+
+<p>数组下标表达式 <code>A[i]</code> 被定义为和表达式 <code>(*((A)+(i)))</code> 是一样的。这意味着很多数组名的使用和指针表达式是等价的。也就意味着你不能对一个 <code>register</code> 限定的数组使用下标。</p>
+<h3 id="Function-Calls-as-Expressions">3.14 函数调用作为表达式<a class="headerlink" href="#Function-Calls-as-Expressions" title="Permanent link">&para;</a></h3>
+<p>任何返回一个值的函数调用都是一个表达式。</p>
+<pre><code>int function(void);
+…
+a = 10 + function();
+</code></pre>
+
+<h3 id="The-Comma-Operator">3.15 逗号操作符<a class="headerlink" href="#The-Comma-Operator" title="Permanent link">&para;</a></h3>
+<p>你可以使用逗号操作符 <code>,</code> 来分割 2 个（表面上相关的）表达式。比如，第一个表达式可能会产生一个被第二个表达式使用的值：</p>
+<pre><code>x++, y = x * x;
+</code></pre>
+
+<p>更常见地，逗号操作符被用于 <code>for</code> 语句，像下面这样：</p>
+<pre><code>/* Using the comma operator in a for statement. */
+
+for (x = 1, y = 10;  x &lt;=10 &amp;&amp; y &gt;=1;  x++, y--)
+{
+    …
+}
+</code></pre>
+
+<p>这让你很方便地设置，监控以及修改 <code>for</code> 语句中的多个控制表达式。</p>
+<p>逗号也被用于分割函数参数；然而，这里的逗号在行为上就不是逗号操作符了。实际上，如果逗号操作符被用于函数调用，那么编译器将解释成使用一个额外的参数（即多了一个参数）来调用函数。</p>
+<p>如果你想在函数参数里面使用逗号操作符，那你必须用圆括号括起来。这是因为在函数参数里逗号有不同的含义：用来分割参数。因此，</p>
+<pre><code>foo (x,  y=47,  x,  z);
+</code></pre>
+
+<p>被解释成使用 4 个参数的函数调用；但是，</p>
+<pre><code>foo (x,  (y=47,  x),  z);
+</code></pre>
+
+<p>就是一个只有三个参数的函数调用（第二个参数是 (y = 47, x)）。</p>
+<h3 id="Member-Access-Expressions">3.16 成员访问表达式<a class="headerlink" href="#Member-Access-Expressions" title="Permanent link">&para;</a></h3>
+<p>你可以使用成员访问操作符 <code>.</code> 来访问结构体或者联合体变量的成员。你要把结构体变量的名字放在操作符左边，成员名字放在右边。</p>
+<pre><code>struct point
+{
+    int x, y;
+};
+
+struct point first_point;
+
+first_point.x = 0;
+first_point.y = 5;
+</code></pre>
+
+<p>你也可以通过指针来访问结构体或联合体变量的成员，要使用间接成员访问操作符 <code>-&gt;</code>。 <code>x-&gt;y</code> 等价于 <code>(*x).y</code>。</p>
+<pre><code>struct fish
+{
+    int length, weight;
+};
+
+struct fish salmon;
+
+struct fish *fish_pointer = &amp;salmon;
+
+fish_pointer-&gt;length = 3;
+fish_pointer-&gt;weight = 9;
+</code></pre>
+
+<p>详见 <a href="../Data-Types/#Pointers">指针</a></p>
+<h3 id="Conditional-Expressions">3.17 条件表达式<a class="headerlink" href="#Conditional-Expressions" title="Permanent link">&para;</a></h3>
+<p>使用条件运算符可以让你通过条件表达式去决定是计算第二个操作数还是第三个操作数，这取决于第一个操作数的真值。例如：</p>
+<pre><code>a ? b : c
+</code></pre>
+
+<p>如果表达式 <code>a</code> 是真，则表达式 <code>b</code> 被计算并且结果是 <code>b</code> 的值。否则，表达式 <code>c</code> 被计算，结果是 <code>c</code>。</p>
+<p>表达式 <code>b</code> 和 <code>c</code> 一定要兼容。也就是说，他们必须都是：</p>
+<ol>
+<li>算术类型</li>
+<li>兼容的 <code>struct</code> 或 <code>union</code> 类型</li>
+<li>指向兼容类型的指针（其中一个可以是 NULL 指针）</li>
+</ol>
+<p>此外，可以一个操作数是指针，另外一个是 <code>void*</code> 指针。</p>
+<p>例如：</p>
+<pre><code>a = (x == 5) ? y : z;
+</code></pre>
+
+<p>这里，如果 <code>x</code> 等于 5，那么 <code>a</code> 将得到 <code>y</code> 的值。否则，<code>a</code> 将得到 <code>z</code> 的值。这可以被认为是一个 <code>if...else</code> 表达式的简写。下面的代码实现了同样的功能：</p>
+<pre><code>if (x == 5)
+    a = y;
+else
+    a = z;
+</code></pre>
+
+<p>如果条件操作符的第一个操作数是真，那么第三个操作数将不会被计算。类似的，如果第一个操作数是假，那第二个操作数不会被计算。而第一个操作数总是会被计算。</p>
+<h3 id="Statements-and-Declarations-in-Expressions">3.18 表达式中的语句和声明<a class="headerlink" href="#Statements-and-Declarations-in-Expressions" title="Permanent link">&para;</a></h3>
+<p>作为 GNU C 扩展，你可以使用圆括号括起来的组合语句来构建一个表达式。这里允许你在一个表达式里包含循环、switch 和局部变量。</p>
+<p>回想一下，一个组合语句（或者叫代码块）是一系列用花括号包裹的语句。而在本节的构架下，圆括号要把花括号包起来。例如：</p>
+<pre><code>({ int y = function (); int z;
+    if (y &gt; 0) z = y;
+    else z = - y;
+    z; })
+</code></pre>
+
+<p>这是合法的（尽管比起必要的写法更复杂的）求 <code>function()</code> 绝对值的表达式。</p>
+<p>组合表达式最后应该是一个跟着分号的表达式；该表达式的值将是整个结构的值。（如果你在花括号最后使用了其他类型的语句，该结构则是 <code>void</code> 类型，因此等效于无值）</p>
+<p>这个特性在定义“安全”宏定义时尤其有用（以至于它们仅计算每一个操作数一次）。例如，“求最大值”函数通常在标准 C 中使用宏作如下定义：</p>
+<pre><code>#define max(a,b) ((a) &gt; (b) ? (a) : (b))
+</code></pre>
+
+<p>但是该定义计算 <code>a</code> 或 <code>b</code> 两次，如果操作数有副作用就会得到一个坏结果。在 GNU C 中，如果你知道操作数的类型（这里我们假设为 <code>int</code>），你可以像下面这样安全地定义宏：</p>
+<pre><code>#define maxint(a,b) \
+    ({int _a = (a), _b = (b); _a &gt; _b ? _a : _b; })
+</code></pre>
+
+<p>如果你不知道操作数的类型，你仍可以这么做，但你必须使用 <code>typeof</code> 表达式或者类型名。</p>
+<p>嵌入语句不需要用在常量表达式，如枚举常量的值，位域的宽度或者一个静态变量的初始值。</p>
+<h3 id="Operator-Precedence">3.19 操作符优先级<a class="headerlink" href="#Operator-Precedence" title="Permanent link">&para;</a></h3>
+<p>当表达式包含多个操作符，如 <code>a + b * f()</code>，这些操作符会根据<em>优先级</em>规则进行分组。例如，这个表达式的含义就是先没有参数地调用函数 <code>f</code>，用结果乘以 <code>b</code>，然后把结果加上 <code>a</code>。这是 C 的运算符优先级规则决定了这个表达式。</p>
+<p>下面是表达式类型列表，要优先级从高到低排序。有时 2 个或多个运算符有相同的优先级；所有这些运算符都是从左到右结合，除非另有说明。</p>
+<ol>
+<li>函数调用，数组下标，和成员访问运算符表达式</li>
+<li>一元运算符，包括逻辑非，按位取反，自增，自减，一元正，一元负，间接运算符，地址运算符，类型转换和 sizeof 表达式。当多个一元运算符连着写，后面的是嵌套在里面的：!-x 相当于 !(-x)</li>
+<li>乘、除和取模表达式</li>
+<li>加和减表达式</li>
+<li>移位表达式</li>
+<li>大于，小于，大于等于和小于等于表达式</li>
+<li>等于和不等于表达式</li>
+<li>按位与表达式</li>
+<li>按位异或表达式</li>
+<li>按位或表达式</li>
+<li>逻辑与表达式</li>
+<li>逻辑或表达式</li>
+<li>条件表达式（使用 ?:）。当使用子表达式时，子表达式从右向左计算</li>
+<li>所有的赋值表达式，包括组合赋值。当多个赋值语句作为一个大的表达式的子表达式出现，他们从右向左计算。</li>
+<li>逗号运算符表达式</li>
+</ol>
+<p>上面这个列表有点干，显得很直接，但它隐藏了一些陷阱。例如：</p>
+<pre><code>foo = *p++;
+</code></pre>
+
+<p>这里 <code>p</code> 作为表达式的副作用被自增，但是 <code>foo</code> 得到的是 <code>*(p++)</code> 的值，而不是 <code>(*p)++</code>，因为一元操作符自右向左结合。还有一些其他的关于 C 优先级表的潜在的陷阱。因此，当读者有任何误解的时候，你都应该使用圆括号来消除误解。</p>
+<h3 id="Order-of-Evaluation">3.20 求值顺序<a class="headerlink" href="#Order-of-Evaluation" title="Permanent link">&para;</a></h3>
+<p>在 C 里你不知假定多个子表达式会按照看起来的自然序来求值。例如，对于表达式 <code>++a * f()</code>，自增 <code>a</code> 是在调用函数 <code>f</code> 之前还是之后？编译器也有可能用其他顺序求值，所以你不能做任何假设。</p>
+<p>本手册抽象地解释了 C 语言的语义。然而，具体编译器在具体计算机上将源代码翻译成指定动作，并且可能为了效率改变执行顺序。你写的程序和计算机实际做的事情之间的对应由副作用和序列点而定。</p>
+<h4 id="Side-Effects">3.20.1 副作用<a class="headerlink" href="#Side-Effects" title="Permanent link">&para;</a></h4>
+<p>副作用是指：</p>
+<ol>
+<li>访问一个 <code>volatile</code> 对象</li>
+<li>修改一个对象</li>
+<li>修改一个文件</li>
+<li>调用了一个包含上面任何一个副作用的函数</li>
+</ol>
+<p>这些在本质上是外部可见的运行程序的副作用。被称为副作用是因为它们是表达式求值的效果，而不是该表达式实际的结果值。</p>
+<p>编译器允许执行程序的操作顺序和源文件中暗含的顺序不同，只要在最后所有需要的副作用都发生了。编译器也允许完全省略一些计算；例如，它允许跳过计算部分表达式，如果可以确定该表达式的计算结果不会被用到并且计算该表达式不会产生任何需要的副作用。</p>
+<h4 id="Sequence-Points">3.20.2 序列点<a class="headerlink" href="#Sequence-Points" title="Permanent link">&para;</a></h4>
+<p>编译器另外的要求是副作用应该按照正确的顺序发生。为了提供这个而不会过度约束编译器，C89 和 C99 标准指定了一些序列点。一个序列点就是下面其中之一：</p>
+<ol>
+<li>一次函数调用（在参数被计算完成之后）</li>
+<li>与运算符 <code>&amp;&amp;</code> 的左操作数计算完成</li>
+<li>或运算符 <code>||</code> 的左操作数计算完成</li>
+<li>逗号运算符 <code>,</code> 的左操作数计算完成</li>
+<li>三目运算符 <code>a ? b : c</code> 的第一个操作数计算完成</li>
+<li>完整的声明结束[^2]</li>
+<li>一个初始化表达式结束</li>
+<li>一个表达式语句结束（如，一个表达式后跟 <code>;</code>）</li>
+<li><code>if</code> 或 <code>switch</code> 语句的控制表达式结束</li>
+<li><code>while</code> 或 <code>do</code> 语句的控制表达式结束</li>
+<li><code>for</code> 语句的 3 个控制表达式任何一个结束</li>
+<li><code>return</code> 语句中的表达式结束</li>
+<li>在库函数马上返回之前</li>
+<li>在和格式化 I/O 相关的（例如常用的 <code>strftime</code> 或 <code>printf</code> 和 <code>scanf</code> 系列函数）动作之后</li>
+<li>马上调用一个比较函数之前和之后（如 <code>qsort</code>）</li>
+</ol>
+<p>在一个序列点，之前表达式计算的副作用必须都完成，并且后面计算的副作用还没有发生。</p>
+<p>这看起来有点难理解，但是可以换个方式去思考它。想象一下你写了一个库（其中一些函数式外部的，一些不是），然后编译它，并允许其他人在他们的代码中调用你的函数。上面的定义则确保了，在他们调用你的函数时，他们传进来的数据拥有和抽象机指定的行为一致的值，并且任何你的函数返回的数据也都有一个和抽象机保持一致的状态。包括使用指针来访问数据（如，不只是函数参数和拥有外部连接的标识符）。</p>
+<p>上面是轻微的简化，因为编译器会在连接时进行真个程序的优化。然而重要的是，尽管可能执行优化，但程序中可见的副作用必须保持相同，就好像它们是由抽象机产生的一样。</p>
+<h4 id="Sequence-Points-Constrain-Expressions">3.20.3 序列点约束表达式<a class="headerlink" href="#Sequence-Points-Constrain-Expressions" title="Permanent link">&para;</a></h4>
+<p>代码段</p>
+<pre><code>i = i + 1;
+</code></pre>
+
+<p>经常出现在程序里。然而，下面这个相似的代码段</p>
+<pre><code>i = ++i + 1;
+</code></pre>
+
+<p>就有点难理解了；最后 <code>i</code> 的值是多少？C 标准（包括 C89 和 C99）都禁止这种写法。</p>
+<p>在 2 个序列点之间，</p>
+<ol>
+<li>一个对象可能最多通过表达式求值改变它自己的值一次</li>
+<li>对象之前的值应该仅被读出来用于计算要被存储的值</li>
+</ol>
+<p>第一个条件禁止像 <code>foo(x=2, ++x)</code> 这样的表达式。第二个条件禁止像 <code>a[i++] = i</code> 的表达式。</p>
+<ul>
+<li>
+<p><code>int x=0; foo(++x, ++x)</code></p>
+<p>在合规的程序中不被允许；在参数计算完成前修改了 <code>x</code> 两次。</p>
+</li>
+<li>
+<p><code>int x=0; bar((++x,++x))</code></p>
+<p>允许；函数 <code>bar</code> 只要一个参数（传过去的是值 2），并且在逗号运算符那里有一个序列点</p>
+</li>
+<li>
+<p><code>*p++ || *p++</code></p>
+<p>允许；<code>||</code> 是一个序列点。</p>
+</li>
+<li>
+<p><code>int x = 1, y = x++;</code></p>
+<p>允许；在完整声明 <code>x</code> 之后有一个序列点。</p>
+</li>
+<li>
+<p><code>x=2; x++;</code></p>
+<p>允许；在第一个表达式语句结束之后有一个序列点。</p>
+</li>
+<li>
+<p><code>if (x++ &gt; MAX) x = 0;</code></p>
+<p>允许；在 <code>if</code>[^3] 语句的控制表达式结束之后有一个序列点。</p>
+</li>
+<li>
+<p><code>(x=y) ? ++x : x--;</code></p>
+<p>允许；在 <code>?</code> 之前有一个序列点，并且后面的 2 个表达式只有一个会被计算。</p>
+</li>
+<li>
+<p><code>int *p=malloc(sizeof(*p)), *q=p; *p=foo(); bar((*p)++,(*q)++);</code></p>
+<p>不允许；<code>p</code> 指向的对象在函数 <code>bar</code> 的参数计算完成前被修改了 2 次。实际上，一次是通过 <code>p</code> 修改，另一次通过 <code>q</code> 修改，它们是不相干的，因为它们都指向了同一个对象。</p>
+</li>
+</ul>
+<p>让我们回到我们介绍求值顺序的例子 <code>++a * f()</code>。假设实际代码是这样的：</p>
+<pre><code>static int a = 1;
+
+static int f (void)
+{
+    a = 100;
+    return 3;
+}
+
+int foo (void)
+{
+   return ++a * f();
+}
+</code></pre>
+
+<p>这个代码在标准合规的程序中允许吗？尽管在 <code>foo</code> 中的表达式修改 <code>a</code> 2 次，但这没有问题。让我们看 2 个可能的情况。</p>
+<ol>
+<li>右边的操作数 <code>f()</code> 先计算</li>
+</ol>
+<p>既然 <code>f</code> 返回一个值而不是 <code>void</code>，那它肯定有一个 <code>return</code> 表达式。那在 <code>f</code> 中修改 <code>a</code> 和求值左操作数之间就有了一个序列点。
+2. 左操作数 <code>++a</code> 先求值</p>
+<p>首先，<code>a</code> 被自增。然后 <code>f</code> 的参数（这里没有）被求值。那么这里在 <code>f</code> 实际运行之前有了一个序列点。</p>
+<p>因此，我们认为这个程序是标准合规的。注意的是，上面的参数实际上不依赖于函数 <code>f</code> 内部。它值依赖于在序列点结束时包含的内容--在我们的例子中，这是一个 return 语句，此外一个表达式语句或完整的声明也可以。</p>
+<p>然而，执行该代码的结果取决于 <code>*</code> 的操作数的求值顺序。如果左操作数先求值，<code>foo</code> 返回 6.否则，<code>foo</code> 返回 303。C 标准并没有指定操作数该以何种顺序求值，并且既不要求编译器指明顺序也不要求编译器只用一种顺序。代码的效果为指定，意味着可能会有很多情况发生，但 C 标准并没有说哪一种。</p>
+<h4 id="Sequence-Points-and-Signal-Delivery">3.20.4 序列点和信号传递<a class="headerlink" href="#Sequence-Points-and-Signal-Delivery" title="Permanent link">&para;</a></h4>
+<p>信号主要记录在 GNU C Library 手册里，尽管 C 标准把编译器和 C 库一起看做是实现。</p>
+<p>信号接收会发生在 2 个序列点之间。前面序列点之前的 <code>volatile</code> 对象的副作用将已经完成，但其他更新可能还没有发生。这甚至会出现在直接赋值语句，如果 <code>x = 0;</code>，因为这个语句生成代码可能包含不止一条指令，也就意味着它可能被信号传递中断。</p>
+<p>C 标准对何种数据访问可以出现在信号处理里面做了相当大的约束。当然可以使用 <code>auto</code> 变量，但根据是读或写其他对象，必须是 <code>volatile sig_atomic_t</code>。<code>volatile</code> 类型限制符确保了访问程序其他部分的变量不会跨越序列点；并且使用 <code>sig_atomic_t</code> 类型可以确保在信号传递时对变量的修改是原子的。</p>
+<p>POSIX 标准也允许一小部分库函数在信号处理里面被调用。这些函数都是异步安全的。如果你的程序只在 POSIX 系统上运行，你可以安全地在信号处理里面调用它们。</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Statement/" class="btn btn-neutral float-right" title="4. 语句">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Data-Types/" class="btn btn-neutral" title="2. 数据类型"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Data-Types/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Statement/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

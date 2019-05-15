@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>7. 示例程序 - Gnu C Reference Manual</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "7. \u793a\u4f8b\u7a0b\u5e8f";
+    var mkdocs_page_input_path = "A-Sample-Program.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Gnu C Reference Manual</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Preface/">前言</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Lexical-Elements/">1. 词法元素</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Data-Types/">2. 数据类型</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Expressions-And-Operators/">3. 表达式与操作符</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Statement/">4. 语句</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Function/">5. 函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Program-Structure-And-Scope/">6. 程序结构和作用域</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">7. 示例程序</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#hello-c">7.1 hello.c</a></li>
+    
+
+    <li class="toctree-l2"><a href="#system-h">7.2 system.h</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Appendix-A-Overflow/">附录A：溢出</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../License/">License</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Gnu C Reference Manual</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>7. 示例程序</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>为了总结我们对 C 语言的描述，这里用 C 语言写了一个完整的程序，包括一个 C 源文件和一个头文件。这是一个典型的 “hello world” 程序的扩展版本，作为用在 FSF Project GNU 中的代码如何格式和组织结构的样例。（你可以从 <a href="http://www.gnu.org/software/hello">http://www.gnu.org/software/hello</a> 下载该程序的最新版本，包括样例 makefile 和其他介绍如何编写 GNU 软件的样例）。</p>
+<p>这个程序使用了预处理器特性；关于预处理器宏的描述，详见 GCC 文档 <a href="https://gcc.gnu.org/onlinedocs/cpp/">The C Preprocessor</a>部分。</p>
+<ul>
+<li><a href="#hello-c">hello.c</a>:</li>
+<li><a href="#system-h">system.h</a></li>
+</ul>
+<h3 id="hello-c">7.1 hello.c<a class="headerlink" href="#hello-c" title="Permanent link">&para;</a></h3>
+<pre><code>/* hello.c -- print a greeting message and exit.
+
+  Copyright (C) 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002,
+  2005, 2006, 2007 Free Software Foundation, Inc.
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 3, or (at your option)
+  any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software Foundation,
+  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+
+#include &lt;config.h&gt;
+#include &quot;system.h&quot;
+
+/* String containing name the program is called with.  */
+const char *program_name;
+
+static const struct option longopts[] =
+{
+    { &quot;greeting&quot;, required_argument, NULL, 'g' },
+    { &quot;help&quot;, no_argument, NULL, 'h' },
+    { &quot;next-generation&quot;, no_argument, NULL, 'n' },
+    { &quot;traditional&quot;, no_argument, NULL, 't' },
+    { &quot;version&quot;, no_argument, NULL, 'v' },
+    { NULL, 0, NULL, 0 }
+};
+
+static void print_help (void);
+static void print_version (void);
+
+int
+main (int argc, char *argv[])
+{
+    int optc;
+    int t = 0, n = 0, lose = 0;
+    const char *greeting = NULL;
+
+    program_name = argv[0];
+
+    /* Set locale via LC_ALL.  */
+    setlocale (LC_ALL, &quot;&quot;);
+
+#if ENABLE_NLS
+    /* Set the text message domain.  */
+    bindtextdomain (PACKAGE, LOCALEDIR);
+    textdomain (PACKAGE);
+#endif
+
+    /* Even exiting has subtleties.  The /dev/full device on GNU/Linux
+       can be used for testing whether writes are checked properly.  For
+       instance, hello &gt;/dev/full should exit unsuccessfully.  On exit,
+       if any writes failed, change the exit status.  This is
+       implemented in the Gnulib module &quot;closeout&quot;.  */
+
+    atexit (close_stdout);
+
+    while ((optc = getopt_long (argc, argv, &quot;g:hntv&quot;, longopts, NULL)) != -1)
+        switch (optc)
+        {
+        /* One goal here is having --help and --version exit immediately,
+         per GNU coding standards.  */
+        case 'v':
+            print_version ();
+            exit (EXIT_SUCCESS);
+            break;
+        case 'g':
+            greeting = optarg;
+            break;
+        case 'h':
+            print_help ();
+            exit (EXIT_SUCCESS);
+            break;
+        case 'n':
+            n = 1;
+            break;
+        case 't':
+            t = 1;
+            break;
+        default:
+            lose = 1;
+            break;
+        }
+
+    if (lose || optind &lt; argc)
+    {
+        /* Print error message and exit.  */
+        if (optind &lt; argc)
+            fprintf (stderr, _(&quot;%s: extra operand: %s\n&quot;),
+                     program_name, argv[optind]);
+        fprintf (stderr, _(&quot;Try `%s --help' for more information.\n&quot;),
+                 program_name);
+        exit (EXIT_FAILURE);
+    }
+
+    /* Print greeting message and exit. */
+    if (t)
+        printf (_(&quot;hello, world\n&quot;));
+
+    else if (n)
+        /* TRANSLATORS: Use box drawing characters or other fancy stuff
+           if your encoding (e.g., UTF-8) allows it.  If done so add the
+           following note, please:
+
+           [Note: For best viewing results use a UTF-8 locale, please.]
+        */
+        printf (_(&quot;\
++---------------+\n\
+| Hello, world! |\n\
++---------------+\n\
+&quot;));
+
+    else
+    {
+        if (!greeting)
+            greeting = _(&quot;Hello, world!&quot;);
+        puts (greeting);
+    }
+
+    exit (EXIT_SUCCESS);
+}
+
+
+
+
+/* Print help info.  This long message is split into
+   several pieces to help translators be able to align different
+   blocks and identify the various pieces.  */
+
+static void
+print_help (void)
+{
+    /* TRANSLATORS: --help output 1 (synopsis)
+       no-wrap */
+    printf (_(&quot;\
+Usage: %s [OPTION]...\n&quot;), program_name);
+
+    /* TRANSLATORS: --help output 2 (brief description)
+       no-wrap */
+    fputs (_(&quot;\
+Print a friendly, customizable greeting.\n&quot;), stdout);
+
+    puts (&quot;&quot;);
+    /* TRANSLATORS: --help output 3: options 1/2
+       no-wrap */
+    fputs (_(&quot;\
+  -h, --help          display this help and exit\n\
+  -v, --version       display version information and exit\n&quot;), stdout);
+
+    puts (&quot;&quot;);
+    /* TRANSLATORS: --help output 4: options 2/2
+       no-wrap */
+    fputs (_(&quot;\
+  -t, --traditional       use traditional greeting format\n\
+  -n, --next-generation   use next-generation greeting format\n\
+  -g, --greeting=TEXT     use TEXT as the greeting message\n&quot;), stdout);
+
+    printf (&quot;\n&quot;);
+    /* TRANSLATORS: --help output 5 (end)
+       TRANSLATORS: the placeholder indicates the bug-reporting address
+       for this application.  Please add _another line_ with the
+       address for translation bugs.
+       no-wrap */
+    printf (_(&quot;\
+Report bugs to &lt;%s&gt;.\n&quot;), PACKAGE_BUGREPORT);
+}
+
+
+
+
+/* Print version and copyright information.  */
+
+static void
+print_version (void)
+{
+    printf (&quot;hello (GNU %s) %s\n&quot;, PACKAGE, VERSION);
+    /* xgettext: no-wrap */
+    puts (&quot;&quot;);
+
+    /* It is important to separate the year from the rest of the message,
+       as done here, to avoid having to retranslate the message when a new
+       year comes around.  */
+    printf (_(&quot;\
+Copyright (C) %s Free Software Foundation, Inc.\n\
+License GPLv3+: GNU GPL version 3 or later\
+&lt;http://gnu.org/licenses/gpl.html&gt;\n\
+This is free software: you are free to change and redistribute it.\n\
+There is NO WARRANTY, to the extent permitted by law.\n&quot;),
+            &quot;2007&quot;);
+}
+</code></pre>
+
+<h3 id="system-h">7.2 system.h<a class="headerlink" href="#system-h" title="Permanent link">&para;</a></h3>
+<pre><code> /* system.h: system-dependent declarations; include this first.
+   Copyright (C) 1996, 2005, 2006, 2007 Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 3, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software Foundation,
+   Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+
+#ifndef HELLO_SYSTEM_H
+#define HELLO_SYSTEM_H
+
+/* Assume ANSI C89 headers are available.  */
+#include &lt;locale.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+/* Use POSIX headers.  If they are not available, we use the substitute
+   provided by gnulib.  */
+#include &lt;getopt.h&gt;
+#include &lt;unistd.h&gt;
+
+/* Internationalization.  */
+#include &quot;gettext.h&quot;
+#define _(str) gettext (str)
+#define N_(str) gettext_noop (str)
+
+/* Check for errors on write.  */
+#include &quot;closeout.h&quot;
+
+#endif /* HELLO_SYSTEM_H */
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Appendix-A-Overflow/" class="btn btn-neutral float-right" title="附录A：溢出">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Program-Structure-And-Scope/" class="btn btn-neutral" title="6. 程序结构和作用域"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Program-Structure-And-Scope/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Appendix-A-Overflow/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

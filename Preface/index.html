@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>前言 - Gnu C Reference Manual</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u524d\u8a00";
+    var mkdocs_page_input_path = "Preface.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Gnu C Reference Manual</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">前言</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">前言</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_2">致谢</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Lexical-Elements/">1. 词法元素</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Data-Types/">2. 数据类型</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Expressions-And-Operators/">3. 表达式与操作符</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Statement/">4. 语句</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Function/">5. 函数</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Program-Structure-And-Scope/">6. 程序结构和作用域</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../A-Sample-Program/">7. 示例程序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Appendix-A-Overflow/">附录A：溢出</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../License/">License</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Gnu C Reference Manual</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>前言</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>这是一份由 GNU Compiler Collection（GCC）实现的 C 编程语言的参考手册。特别指出，这份手册针对的是：</p>
+<ul>
+<li>1989 ANSI C 标准，俗称 “C89”</li>
+<li>1999 ISO C 标准，俗称 “C99”，针对 GCC 实现的 C99 部分</li>
+<li>当前的 GNU 标准 C 扩展</li>
+</ul>
+<p>这份手册以 C89 作为基础。C99 特性以及 GNU 扩展都会明确标注。</p>
+<p>默认情况下，GCC 会把代码当做 C89+GNU 特定扩展来编译。大部分 C99 特性已经被支持；一旦所有特性可用，默认编译语言将改为 C99+GNU 特定扩展（一些针对 C89 的 GNU 扩展将被移除，有的做了轻微改动以作为 C99 中的标准特性）。</p>
+<p>C 语言包含了一系列预处理指令，被用于宏文本替换，条件编译以及文件引入。尽管通常会在 C 语言手册中描述，但 GNU C 预处理器被完全归档在了 <em>C 预处理器</em> 中。该文档覆盖了 C、C++ 以及 Objective-C 的预处理，因此这里将不再包含这些内容。</p>
+<h3 id="_2">致谢<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>非常感谢帮助编辑、校对、提供建议、排版以及文案的所有人，包括：Diego Andres Alvarez Marin, Nelson H. F. Beebe, Karl Berry, Robert Chassell, Hanfeng Chen, Mark de Volld, Antonio Diaz Diaz, dine, Andreas Foerster, Denver Gingerich, Lisa Goldstein, Robert Hansen, Jean-Christophe Helary, Mogens Hetsholm, Teddy Hogeborn, Joe Humphries, J. Wren Hunt, Dutch Ingraham, Adam Johansen, Vladimir Kadlec, Benjamin Kagia, Dright Kayorent, Sugun Kedambadi, Felix Lee, Bjorn Liencres, Steve Morningthunder, Aljosha Papsch, Matthew Plant, Jonathan Sisti, Richard Stallman, J. Otto Tennant, Ole Tetlie, Keith Thompson, T.F. Torrey, James Youngman, and Steve Zachar。Trevis Rothwell 作为项目维护人员 和 James Youngman 一起写了大部分的内容。</p>
+<p>一些示例程序是基于 Donald Knuth 的 <em>计算机程序设计艺术</em> 中的算法。</p>
+<p>bug 报告和建议请发邮件至 <a href="mailto:gnu-c-manual@gnu.org">gnu-c-manual@gnu.org</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Lexical-Elements/" class="btn btn-neutral float-right" title="1. 词法元素">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="../Lexical-Elements/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
