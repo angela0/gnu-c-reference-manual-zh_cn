@@ -1,0 +1,19 @@
+site_name: Gnu C Reference Manual
+theme: readthedocs
+
+markdown_extensions:
+    - toc:
+        permalink: true
+    - attr_list
+    - footnotes
+nav:
+    - 前言: Preface.md
+    - 1. 词法元素: Lexical-Elements.md
+    - 2. 数据类型: Data-Types.md
+    - 3. 表达式与操作符: Expressions-And-Operators.md
+    - 4. 语句: Statement.md
+    - 5. 函数: Function.md
+    - 6. 程序结构和作用域: Program-Structure-And-Scope.md
+    - 7. 示例程序: A-Sample-Program.md
+    - 附录A：溢出: Appendix-A-Overflow.md
+    - License: License.md
