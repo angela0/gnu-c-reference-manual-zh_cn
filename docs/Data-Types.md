@@ -93,7 +93,7 @@ C 中提供的实数类型精度有限，所以并不能精确表示所有的实
 
 #### 2.1.3 复数类型 { #Complex-Number-Types }
 
-GCC 引入一些复数类型作为 C89 的扩展。类似的特性也被引入 C99，但它们有一些不同。我们先介绍标准的复数类型。
+GCC 引入一些复数类型作为 C89 的扩展。类似的特性也被引入 C99[^1]，但它们有一些不同。我们先介绍标准的复数类型。
 
 ##### 2.1.3.1 标准复数类型 { #Standard-Complex-Number-Types }
 
@@ -968,3 +968,5 @@ int numberOfClients = 0;
 ### 2.10 类型别名 { #Renaming-Types }
 
 有时给类型起一个新名字是很方便的。你可以使用 `typedef` 语句来给类型起别名。详见 [typedef 语句](Statement.md#The-typedef-Statement)。
+
+[^1]: C++ 也支持复数类型，但与 ISO C99 不兼容
