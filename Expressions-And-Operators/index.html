@@ -739,7 +739,7 @@ else
 <li>或运算符 <code>||</code> 的左操作数计算完成</li>
 <li>逗号运算符 <code>,</code> 的左操作数计算完成</li>
 <li>三目运算符 <code>a ? b : c</code> 的第一个操作数计算完成</li>
-<li>完整的声明结束[^2]</li>
+<li>完整的声明结束<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">1</a></sup></li>
 <li>一个初始化表达式结束</li>
 <li>一个表达式语句结束（如，一个表达式后跟 <code>;</code>）</li>
 <li><code>if</code> 或 <code>switch</code> 语句的控制表达式结束</li>
@@ -792,7 +792,7 @@ else
 </li>
 <li>
 <p><code>if (x++ &gt; MAX) x = 0;</code></p>
-<p>允许；在 <code>if</code>[^3] 语句的控制表达式结束之后有一个序列点。</p>
+<p>允许；在 <code>if</code><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup> 语句的控制表达式结束之后有一个序列点。</p>
 </li>
 <li>
 <p><code>(x=y) ? ++x : x--;</code></p>
@@ -832,6 +832,17 @@ int foo (void)
 <p>信号接收会发生在 2 个序列点之间。前面序列点之前的 <code>volatile</code> 对象的副作用将已经完成，但其他更新可能还没有发生。这甚至会出现在直接赋值语句，如果 <code>x = 0;</code>，因为这个语句生成代码可能包含不止一条指令，也就意味着它可能被信号传递中断。</p>
 <p>C 标准对何种数据访问可以出现在信号处理里面做了相当大的约束。当然可以使用 <code>auto</code> 变量，但根据是读或写其他对象，必须是 <code>volatile sig_atomic_t</code>。<code>volatile</code> 类型限制符确保了访问程序其他部分的变量不会跨越序列点；并且使用 <code>sig_atomic_t</code> 类型可以确保在信号传递时对变量的修改是原子的。</p>
 <p>POSIX 标准也允许一小部分库函数在信号处理里面被调用。这些函数都是异步安全的。如果你的程序只在 POSIX 系统上运行，你可以安全地在信号处理里面调用它们。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:2">
+<p>完整的声明符是一个函数声明或者一个对象声明，并且该对象不能是其它对象的一部分&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>然而如果示例中的 <code>MAX</code> 的值为 <code>INT_MAX</code> 并且 <code>x</code> 的类型是 <code>int</code>，那这里有溢出问题。详见 <a href="../Appendix-A-Overflow/">附录A：溢出</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
               
             </div>
           </div>
